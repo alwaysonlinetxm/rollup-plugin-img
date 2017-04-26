@@ -1,0 +1,29 @@
+{
+  "name": "rollup-plugin-img",
+  "version": "1.0.0",
+  "description": "import image files with rollup",
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.es.js",
+  "repository": "https://github.com/alwaysonlinetxm/rollup-plugin-img.git",
+  "bugs": "https://github.com/alwaysonlinetxm/rollup-plugin-img/issues",
+  "author": "alwaysolinetxm",
+  "license": "MIT",
+  "keywords": [
+    "rollup",
+    "rollup-plugin",
+    "image"
+  ],
+  "scripts": {
+    "build": "rollup -c",
+    "eslint": "eslint src",
+    "prepublish": "npm run eslint && npm run build"
+  },
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "rollup": "^0.41.6",
+    "rollup-plugin-buble": "^0.15.0"
+  },
+  "dependencies": {
+    "rollup-pluginutils": "^2.0.1"
+  }
+}
