@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-img",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "import image files with rollup",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
