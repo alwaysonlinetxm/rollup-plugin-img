@@ -1,6 +1,6 @@
 {
   "name": "rollup-plugin-img",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "import image files with rollup",
   "main": "dist/index.cjs.js",
   "module": "dist/index.es.js",
@@ -8,6 +8,7 @@
   "bugs": "https://github.com/alwaysonlinetxm/rollup-plugin-img/issues",
   "author": "alwaysolinetxm",
   "license": "MIT",
+  "files": [ "src", "dist", "README.md" ],
   "keywords": [
     "rollup",
     "rollup-plugin",
