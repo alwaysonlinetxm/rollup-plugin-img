@@ -23,7 +23,7 @@ function img(opt) {
 			const ext = extname(id);
 			if (!extensions.test(ext)) return null; // not an image
 
-      if (statSync(id).size <= 8192) { // use base64
+      if (statSync(id).size <= (opt.limit || 8192)) { // use base64
 				return `export default "data:${mimeMap[ext]};base64,${readFileSync(id, 'base64')}"`;
       } else { //copy file to distPath
         const output = opt.output || '';
