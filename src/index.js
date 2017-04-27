@@ -10,8 +10,7 @@ const mimeMap = {
 	'.svg':  'image/svg+xml'
 };
 
-function img(opt) {
-	!opt && (opt = {});
+function img(opt = {}) {
 	const extensions = opt.extensions || /\.(png|jpg|jpeg|gif|svg)$/;
 	const filter = createFilter(opt.include, opt.exclude);
 
