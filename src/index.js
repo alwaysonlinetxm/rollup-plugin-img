@@ -1,5 +1,5 @@
 import { statSync, readFileSync, createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs';
-import { extname, basename  } from 'path';
+import { extname, basename, relative  } from 'path';
 import { createFilter } from 'rollup-pluginutils';
 
 const mimeMap = {
@@ -25,7 +25,7 @@ function img(opt = {}) {
       if (statSync(id).size <= (opt.limit || 8192)) { // use base64
 				return `export default "data:${mimeMap[ext]};base64,${readFileSync(id, 'base64')}"`;
       } else { //copy file to distPath
-        const output = opt.output || '';
+        const output = relative('./', opt.output) || '';
         if (!existsSync(output)) {
           const dirs = output.split('/');
           for (let i = 0, dir = dirs[0]; i < dirs.length; i++, dir += `/${dirs[i]}`) {
@@ -34,9 +34,11 @@ function img(opt = {}) {
             }
           }
         }
-				var outputFile = `${output}/${basename(id)}`;
+				const outputFile = `${output}/${basename(id)}`;
+				let baseIndex = outputFile.indexOf('/');
+				baseIndex = baseIndex !== -1 ? baseIndex + 1 : 0;
         createReadStream(id).pipe(createWriteStream(outputFile));
-        return `export default "${outputFile}"`;
+        return `export default "${outputFile.slice(baseIndex)}"`;
       }
 		}
 	};
