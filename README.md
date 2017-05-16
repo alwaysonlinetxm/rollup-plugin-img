@@ -46,10 +46,9 @@ import img from 'path/image.png';
 You can pass an option to the `image()` just like above, and there are some options:
 
 - exclude & include: like other rollup plugins. [Details](https://github.com/rollup/rollup/wiki/Plugins)
-- output: the dest path of output image files.
+- output: the dest path of output image files. The first directory of dest will be handled as the base output directory(where the html file will be, usually).
 - extensions: a regular expression for the extensions of image files.
-- limit: the limit(byte) of the file size. A file will be transformed into base64 string when it doesn't 
-exceeded the limit, otherwise, it will be copyed to the dest path.
+- limit: the limit(byte) of the file size. A file will be transformed into base64 string when it doesn't exceeded the limit, otherwise, it will be copyed to the dest path.
 
 demo:
 
