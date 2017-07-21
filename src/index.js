@@ -1,6 +1,7 @@
 import { statSync, readFileSync, createReadStream, createWriteStream, existsSync, mkdirSync } from 'fs';
 import { extname, basename, relative  } from 'path';
 import { createFilter } from 'rollup-pluginutils';
+import hasha from 'hasha';
 
 const mimeMap = {
 	'.jpg':  'image/jpeg',
@@ -34,7 +35,14 @@ function img(opt = {}) {
             }
           }
         }
-				const outputFile = `${output}/${basename(id)}`;
+        let name = basename(id);
+
+        if (opt.hash) {
+          const code = readFileSync(id).toString();
+          const hash = hasha(code, { algorithm: 'md5' });
+          name =  `${basename(id, ext)}-${hash}${ext}`;
+        }
+				const outputFile = `${output}/${name}`;
 				let baseIndex = outputFile.indexOf('/');
 				baseIndex = baseIndex !== -1 ? baseIndex + 1 : 0;
         createReadStream(id).pipe(createWriteStream(outputFile));
