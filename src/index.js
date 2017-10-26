@@ -46,7 +46,7 @@ function img(opt = {}) {
 				let baseIndex = outputFile.indexOf('/');
 				baseIndex = baseIndex !== -1 ? baseIndex + 1 : 0;
         createReadStream(id).pipe(createWriteStream(outputFile));
-        return `export default "${outputFile.slice(baseIndex)}"`;
+        return `export default "${opt._slash ? './' : ''}${outputFile.slice(baseIndex)}"`;
       }
 		}
 	};
