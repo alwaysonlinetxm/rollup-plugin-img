@@ -2,6 +2,7 @@ import { statSync, readFileSync, createReadStream, createWriteStream, existsSync
 import { extname, basename, relative  } from 'path';
 import { createFilter } from 'rollup-pluginutils';
 import hasha from 'hasha';
+import slash from 'slash';
 
 const mimeMap = {
 	'.jpg':  'image/jpeg',
@@ -26,7 +27,7 @@ function img(opt = {}) {
       if (statSync(id).size <= (opt.limit || 8192)) { // use base64
 				return `export default "data:${mimeMap[ext]};base64,${readFileSync(id, 'base64')}"`;
       } else { //copy file to distPath
-        const output = relative('./', opt.output) || '';
+        const output = slash(relative('./', opt.output)) || '';
         if (!existsSync(output)) {
           const dirs = output.split('/');
           for (let i = 0, dir = dirs[0]; i < dirs.length; i++, dir += `/${dirs[i]}`) {
